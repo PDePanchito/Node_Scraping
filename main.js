@@ -21,12 +21,15 @@ const fs = require('fs');
     // Navega a la página de 'mis datos'
     await driver.get('https://www.jumbo.cl/mis-datos');
 
+    await new Promise(resolve => setTimeout(resolve, 2000)); // Espera 2 segundos
+
     // Encuentra los elementos con la clase 'info-row' y extrae su texto.
     let information = await driver.findElements(By.className('info-row'))
     let infoRows = []
 
     for (let info of information) {
         let infoText = await info.getText()
+        infoText = infoText.replace('\n', ': ')
         infoRows.push(infoText)
     }
 

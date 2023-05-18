@@ -1,8 +1,9 @@
 [
-  "Nombre",
-  "Apellido\nMartínez",
-  "RUT\n200461444",
+  "Nombre: Francisco",
+  "Apellido: Martínez",
+  "RUT: 200461444",
   "Fecha de nacimiento",
-  "Teléfono\n948693740",
-  "Sexo\nFemenino"
+  "Teléfono: 948693740",
+  "Mail: franciscomqbn@gmail.com",
+  "Sexo: Femenino"
 ]
