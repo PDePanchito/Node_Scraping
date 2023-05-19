@@ -9,11 +9,10 @@ const fs = require('fs');
     // Encuentra los campos de usuario y contraseña y el botón para cerrar el modal.
     let campoUsuario = await driver.findElement(By.css('#general-portal > div > div.new-modal-content > form > div.new-modal-scroll > div > div:nth-child(1) > label > input'));
     let campoContraseña = await driver.findElement(By.css('#general-portal > div > div.new-modal-content > form > div.new-modal-scroll > div > div:nth-child(2) > label > input'));
-    let modalClose = await driver.findElement(By.css('#general-portal > div > div.new-modal-content > button'));
 
     // Escribe el usuario y la contraseña y presiona enter.
-    await campoUsuario.sendKeys('franciscomqbn@gmail.com');
-    await campoContraseña.sendKeys('Aienaini41098', Key.RETURN);
+    await campoUsuario.sendKeys('');
+    await campoContraseña.sendKeys('', Key.RETURN);
 
     // Espera hasta que la página se haya cargado después de enviar el formulario.
     await new Promise(resolve => setTimeout(resolve, 2000)); // Espera 2 segundos
@@ -36,7 +35,15 @@ const fs = require('fs');
     // Escribe la información en un archivo JSON
     fs.writeFileSync('clientInformation.json', JSON.stringify(infoRows, null, 2));
 
+    let cookies = await driver.manage().getCookies();
+
+    // Encuentra la cookie 'shopping-list' dentro de las cookies obtenidas
+    let shoppingListCookie = cookies.find(cookie => cookie.name === 'shopping-list');
+
+    // Escribe la cookie en un archivo JSON
+    fs.writeFileSync('cookies.json', JSON.stringify(shoppingListCookie, null, 2));
+
   } finally {
-    await driver.quit();
+    console.log('Revisa las cookies bro!')
   }
 })();
